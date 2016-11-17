@@ -23,18 +23,20 @@ public class ChatterServer {
 			PrintWriter out = new PrintWriter(client.getOutputStream(), true);
 			out.println("Welcome To The Server");
 			
-			while(true){
+			try {
+				while(true){
 				
-				BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-				msg = in.readLine();
-				out.println(msg);
-				System.out.println("Client: " + msg);
+					BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+					msg = in.readLine();
+					out.println(msg);
+					System.out.println("Client: " + msg);
 				
-				}
+					}
+				} catch (SocketException e) { System.out.println("Client Disconnected"); }
 			}	
 			
 		} catch (IOException e) { System.out.println(e); }
 		
-	}
+	} 
 
 }
